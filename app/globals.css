@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050510;
+  --foreground: #e0e0e0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Courier Prime', monospace;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.font-industrial {
+  font-family: 'Oswald', sans-serif;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.noise-overlay::before {
+  content: "";
+  position: fixed;
+  top: -150%;
+  left: -150%;
+  width: 300%;
+  height: 300%;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 9999;
+  animation: noise 1s steps(2) infinite;
+}
+
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 300px rgba(0,0,0,0.95);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #050510;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1e30;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7f1d1d;
+}
