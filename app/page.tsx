@@ -12,12 +12,31 @@ const WARNING_MESSAGE = "THIS PAGE IS A CLASSIFIED DOCUMENT PROTECTED BY LEVEL 5
 export default function Home() {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const [isGlitching, setIsGlitching] = useState(false); // 글리치 상태 추가
+  const [isGlitching, setIsGlitching] = useState(false);
+  const [currentTime, setCurrentTime] = useState('');
+
+  // KST 시간 업데이트 함수
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: 'Asia/Seoul',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      };
+      const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
+      setCurrentTime(timeString);
+    };
+
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleAuthorize = () => {
-    setIsGlitching(true); // 글리치 시작
-    
-    // 0.5초 동안 지직거린 후 실제 화면으로 진입
+    setIsGlitching(true);
     setTimeout(() => {
       setIsAuthorized(true);
       setIsGlitching(false);
@@ -31,22 +50,27 @@ export default function Home() {
       setTypedText((prev) => WARNING_MESSAGE.slice(0, index + 1));
       index++;
       if (index === WARNING_MESSAGE.length) clearInterval(intervalId);
-    }, 60);
+    }, 30);
     return () => clearInterval(intervalId);
   }, [isAuthorized]);
 
   if (!isAuthorized) {
     return (
       <div className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050510] text-slate-300 p-6 font-mono ${isGlitching ? 'animate-glitch' : ''}`}>
-        {/* 글리치 발생 시 나타나는 붉은색 노이즈 레이어 */}
         {isGlitching && (
           <div className="absolute inset-0 z-[110] bg-red-900/20 mix-blend-overlay animate-noise pointer-events-none"></div>
         )}
         
         <div className={`max-w-2xl w-full border border-red-900/30 p-10 bg-[#0a0a1a] shadow-[0_0_60px_rgba(153,27,27,0.15)] relative overflow-hidden ${isGlitching ? 'scale-105 duration-75' : 'duration-500'}`}>
+          {/* 상단 KST 시계 레이어 */}
+          <div className="absolute top-4 right-6 flex items-center space-x-2">
+            <span className="text-[9px] text-red-900/60 tracking-widest animate-pulse">● LIVE</span>
+            <span className="text-[10px] text-slate-500 tracking-tighter">KST {currentTime}</span>
+          </div>
+
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-900/5 to-transparent pointer-events-none h-4 w-full animate-pulse"></div>
           
-          <div className="relative z-10 flex flex-col items-center">
+          <div className="relative z-10 flex flex-col items-center mt-4">
             <h1 className="w-full text-center text-red-700 font-bold text-sm md:text-base mb-8 tracking-[0.4em] border-b border-red-900/20 pb-4 whitespace-nowrap">
               [ TERMINAL ACCESS RESTRICTED ]
             </h1>
@@ -83,7 +107,7 @@ export default function Home() {
         `}</style>
 
         <div className="mt-10 text-[8px] text-slate-800 tracking-[0.6em] uppercase">
-          DEUNIVERSE ENCRYPTION SYSTEM // SECURE_NODE_032
+          DEUNIVERSE ENCRYPTION SYSTEM // SECURE_NODE_032 // {currentTime} KST
         </div>
       </div>
     );
