@@ -171,7 +171,7 @@ export default function Home() {
 
         <footer className="mt-48 py-12 text-center">
           <p className="text-[10px] tracking-[0.5em] uppercase text-slate-600 font-bold">
-            © 2026 TAEHON STRATEGY GROUP. ALL RIGHTS RESERVED. UNAUTHORIZED DUPLICATION IS A VIOLATION OF APPLICABLE LAWS.
+            © 2024 TAEHON STRATEGY GROUP. ALL RIGHTS RESERVED. UNAUTHORIZED DUPLICATION IS A VIOLATION OF APPLICABLE LAWS.
           </p>
         </footer>
       </main>
