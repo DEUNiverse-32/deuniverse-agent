@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Dossier from './components/Dossier';
-import InternalLogs from './components/InternalLogs';
-import ExternalGateway from './components/ExternalGateway';
-import Archive from './components/Archive';
+import Header from '@/components/Header';
+import Dossier from '@/components/Dossier';
+import InternalLogs from '@/components/InternalLogs';
+import ExternalGateway from '@/components/ExternalGateway';
+import Archive from '@/components/Archive';
 
 const WARNING_MESSAGE = "THIS PAGE IS A CLASSIFIED DOCUMENT PROTECTED BY LEVEL 5 SECURITY CLEARANCE. ALL SYSTEM LOGS ARE ENCRYPTED IN REAL-TIME. UNAUTHORIZED ACCESS ATTEMPTS WILL BE TRACKED AND NEUTRALIZED IMMEDIATELY.";
 
