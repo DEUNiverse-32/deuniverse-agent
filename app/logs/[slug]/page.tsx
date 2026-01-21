@@ -15,9 +15,10 @@ export default function Home() {
   const [isGlitching, setIsGlitching] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
   
-  // 현재 선택된 탭 상태 관리
-  const [activeTab, setActiveTab] = useState('dossier');
+  // 탭 상태 관리 (초기값: profile)
+  const [activeTab, setActiveTab] = useState('profile');
 
+  // KST 시간 업데이트
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -41,6 +42,7 @@ export default function Home() {
     }, 500);
   };
 
+  // 타자기 효과 (유저 요청: 50ms로 속도 조정)
   useEffect(() => {
     if (isAuthorized || typedText.length === WARNING_MESSAGE.length) return;
     let index = 0;
@@ -48,15 +50,13 @@ export default function Home() {
       setTypedText(WARNING_MESSAGE.slice(0, index + 1));
       index++;
       if (index === WARNING_MESSAGE.length) clearInterval(intervalId);
-    }, 50);
+    }, 50); // 30ms -> 50ms로 변경 (더 묵직한 속도)
     return () => clearInterval(intervalId);
   }, [isAuthorized]);
 
   if (!isAuthorized) {
-    // ... (보안 게이트 코드는 이전과 동일하게 유지하거나 필요시 수정)
     return (
       <div className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050510] text-slate-300 p-6 font-mono ${isGlitching ? 'animate-glitch' : ''}`}>
-        {isGlitching && <div className="absolute inset-0 z-[110] bg-red-900/20 mix-blend-overlay animate-noise pointer-events-none" />}
         <div className="max-w-2xl w-full border border-red-900/30 p-10 bg-[#0a0a1a] shadow-[0_0_60px_rgba(153,27,27,0.15)] relative overflow-hidden">
           <div className="absolute top-4 right-6 flex items-center space-x-2">
             <span className="text-[9px] text-red-900/60 tracking-widest animate-pulse">● LIVE</span>
@@ -79,42 +79,62 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050510] text-slate-300 relative selection:bg-red-900 selection:text-white overflow-hidden">
+    <div className="min-h-screen bg-[#050510] text-slate-300 relative selection:bg-red-900 selection:text-white overflow-hidden font-mono">
       <main className="container mx-auto px-6 py-12 max-w-5xl relative z-10 flex flex-col h-screen">
         
-        {/* 반질반질한(광택) 느낌의 제목 섹션 */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold tracking-[0.2em] uppercase mb-2 bg-gradient-to-br from-slate-100 via-slate-400 to-slate-600 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
+        {/* 반질반질한 금속 광택 제목 */}
+        <div className="mb-10 text-center">
+          <h1 className="text-5xl font-bold tracking-[0.3em] uppercase bg-gradient-to-b from-white via-slate-400 to-slate-700 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
             DEUNIVERSE
           </h1>
-          <div className="h-[1px] w-full bg-gradient-to-r from-red-900/50 via-slate-800 to-transparent" />
+          <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent opacity-50" />
         </div>
 
-        {/* 탭 내비게이션 */}
-        <nav className="flex space-x-8 mb-12 border-b border-slate-900/50 pb-4">
-          {['dossier', 'internal-logs', 'external-gateway', 'archive'].map((tab) => (
+        {/* 탭 내비게이션 (유저 요청 목록 반영) */}
+        <nav className="flex flex-wrap justify-center gap-6 mb-12 border-b border-slate-900/50 pb-6">
+          {[
+            { id: 'profile', label: 'PROFILE' },
+            { id: 'log', label: 'LOG' },
+            { id: 'report', label: 'REPORT' },
+            { id: 'deuniverse', label: 'DEUNIVERSE' },
+            { id: 'book', label: 'BOOK' },
+            { id: 'data', label: 'DATA' },
+            { id: 'etc', label: 'ETC.' },
+          ].map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`text-[10px] tracking-[0.3em] uppercase transition-all duration-300 ${
-                activeTab === tab ? 'text-red-700 font-bold' : 'text-slate-600 hover:text-slate-400'
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`text-[10px] tracking-[0.2em] transition-all duration-300 ${
+                activeTab === tab.id ? 'text-red-700 font-bold border-b border-red-700 pb-1' : 'text-slate-600 hover:text-slate-400'
               }`}
             >
-              {tab.replace('-', ' ')}
+              {tab.label}
             </button>
           ))}
+          {/* 외부 메모리 (네이버 블로그 링크) */}
+          <a
+            href="https://blog.naver.com/inkedwithyou"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[10px] tracking-[0.2em] text-slate-600 hover:text-red-900 transition-colors"
+          >
+            EXTERNAL MEMORY ↗
+          </a>
         </nav>
 
         {/* 탭 콘텐츠 영역 */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar pr-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          {activeTab === 'dossier' && <Dossier />}
-          {activeTab === 'internal-logs' && <InternalLogs />}
-          {activeTab === 'external-gateway' && <ExternalGateway />}
-          {activeTab === 'archive' && <Archive />}
+        <div className="flex-1 overflow-y-auto custom-scrollbar pr-4 animate-in fade-in slide-in-from-bottom-2 duration-700">
+          {activeTab === 'profile' && <Dossier />}
+          {activeTab === 'log' && <InternalLogs />}
+          {activeTab === 'report' && <Archive />}
+          {activeTab === 'deuniverse' && <div className="text-center text-slate-600 mt-20">[ DATA CLASSIFIED ]</div>}
+          {activeTab === 'book' && <div className="text-center text-slate-600 mt-20">[ ARCHIVED MANUSCRIPTS ]</div>}
+          {activeTab === 'data' && <div className="text-center text-slate-600 mt-20">[ SYSTEM METRICS ]</div>}
+          {activeTab === 'etc' && <div className="text-center text-slate-600 mt-20">[ MISCELLANEOUS ]</div>}
         </div>
 
-        <footer className="py-8 text-center opacity-30">
-          <p className="text-[9px] tracking-[0.4em] uppercase font-mono">
+        <footer className="py-8 text-center opacity-20">
+          <p className="text-[9px] tracking-[0.4em] uppercase">
             SECURE ACCESS ONLY // {currentTime} KST
           </p>
         </footer>
