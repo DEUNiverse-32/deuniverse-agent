@@ -29,7 +29,7 @@ export default function Home() {
       if (index === WARNING_MESSAGE.length) {
         clearInterval(intervalId);
       }
-    }, 30); // 영문은 한글보다 호흡이 빨라야 제맛이라 속도를 조금 올렸어.
+    }, 60); // 영문은 한글보다 호흡이 빨라야 제맛이라 속도를 조금 올렸어.
 
     return () => clearInterval(intervalId);
   }, [isAuthorized]);
