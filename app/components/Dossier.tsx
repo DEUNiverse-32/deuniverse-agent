@@ -1,29 +1,26 @@
 'use client';
 
-// useState를 사용하기 위해 import에 추가
 import React, { useState } from 'react';
 
 export default function Dossier() {
-  // 이미지의 흑백/컬러 상태를 관리하는 State (기본값: true = 흑백)
   const [isGrayscale, setIsGrayscale] = useState(true);
 
   const userInfo = {
     name: "Lee Hae-Deun",
     position: "Strategy Team Deputy Head",
     clearance: "Level 5 (Top Secret)",
-    // status를 "Active"만 남기고 수정
     status: "Active",
     affiliation: "TaehOn", 
     image: "/me.png" 
   };
 
-  // 이미지 클릭 시 실행될 함수: 상태를 반대로 토글
   const toggleImageColor = () => {
     setIsGrayscale(!isGrayscale);
   };
 
   return (
     <div className="relative border border-slate-900 bg-black/40 backdrop-blur-xl p-8 md:p-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden group font-mono">
+      {/* Background patterns */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none select-none text-[8px] leading-tight overflow-hidden text-slate-400">
         {Array(150).fill("SYSTEM_IDENT_SECURE_ACCESS_LEVEL_5_CONFIDENTIAL_").join("")}
       </div>
@@ -32,25 +29,22 @@ export default function Dossier() {
         
         <div className="flex flex-col md:flex-row gap-10 items-start mb-12 border-b border-red-900/20 pb-10">
           
-          {/* ID 사진 영역 */}
+          {/* ID Photo Section */}
           <div className="relative flex-shrink-0">
             <div className="w-40 h-52 md:w-48 md:h-60 relative overflow-hidden border border-slate-800 bg-[#0a0a1a]">
-              {/* 이미지 태그 수정:
-                1. onClick 이벤트 추가
-                2. 상태(isGrayscale)에 따라 클래스를 동적으로 변경
-                3. 부드러운 전환을 위한 transition 추가
-              */}
               <img 
                 src={userInfo.image} 
                 alt="Subject Profile"
                 onClick={toggleImageColor}
                 className={`w-full h-full object-cover transition-all duration-700 cursor-pointer ${
                   isGrayscale 
-                    ? 'grayscale contrast-110 opacity-90'  // 흑백 모드 (기본)
-                    : 'grayscale-0 contrast-100 opacity-100' // 컬러 모드 (클릭 시)
+                    ? 'grayscale contrast-110 opacity-90' 
+                    : 'grayscale-0 contrast-100 opacity-100'
                 }`}
               />
               <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] pointer-events-none opacity-20"></div>
+              <div className="absolute top-0 left-0 bg-red-900/80 px-2 py-1 pointer-events-none">
+                <p className="text-[7px] text-white tracking-[0.2em] font-bold">ID_PHOTO</p>
               </div>
             </div>
           </div>
@@ -70,6 +64,7 @@ export default function Dossier() {
           </div>
         </div>
 
+        {/* Detailed Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-sm opacity-90">
           <div className="space-y-6">
             <div>
@@ -84,7 +79,6 @@ export default function Dossier() {
           <div className="space-y-6">
             <div>
               <span className="block text-[9px] text-slate-600 tracking-[0.3em] uppercase mb-1 font-bold">Current Status</span>
-              {/* status가 "Active"로 짧아짐 */}
               <span className="text-red-700/90 tracking-widest animate-pulse font-bold">{userInfo.status}</span>
             </div>
             <div>
@@ -96,6 +90,7 @@ export default function Dossier() {
           </div>
         </div>
 
+        {/* Bottom Decoration */}
         <div className="mt-16 pt-6 border-t border-slate-900/50 flex justify-between items-center opacity-40">
           <div className="flex space-x-0.5">
             {[...Array(16)].map((_, i) => (
