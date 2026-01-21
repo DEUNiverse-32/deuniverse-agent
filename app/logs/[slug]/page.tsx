@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPostBySlug } from '../../../lib/posts';
+import { getPostBySlug } from '@/lib/posts';
 
 export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
