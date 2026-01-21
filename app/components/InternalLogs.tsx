@@ -1,3 +1,4 @@
+"use client";
 // app/components/InternalLogs.tsx
 
 const InternalLogs: React.FC = () => {
@@ -6,8 +7,6 @@ const InternalLogs: React.FC = () => {
   console.log("보관소에서 가져온 기록들:", allPosts);
 
   return (
-"use client";
-
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
