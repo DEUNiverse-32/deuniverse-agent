@@ -40,7 +40,7 @@ const Dossier: React.FC = () => {
     <div className="relative border border-slate-900 bg-black/40 backdrop-blur-xl p-8 md:p-12 shadow-2xl overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none font-mono text-[8px] leading-tight overflow-hidden text-slate-400">
-        {Array(100).fill("SYSTEM_IDENT_SECURE_ACCESS_LEVEL_1_").join("")}
+        {Array(100).fill("SYSTEM_IDENT_SECURE_ACCESS_LEVEL_5_").join("")}
       </div>
 
       {/* Header Info */}
@@ -56,7 +56,7 @@ const Dossier: React.FC = () => {
           </motion.div>
         </div>
         <div className="text-right font-mono text-[10px] text-slate-500">
-          <p className="text-red-900 font-bold uppercase tracking-widest mb-1">SECURITY CLEARANCE: LEVEL 1 (HIGHEST)</p>
+          <p className="text-red-900 font-bold uppercase tracking-widest mb-1">SECURITY CLEARANCE: LEVEL 5 (HIGHEST)</p>
           <p className="text-slate-300">REF: HD_LOG_2024</p>
         </div>
       </div>
@@ -94,7 +94,7 @@ const Dossier: React.FC = () => {
              </div>
              <div className="space-y-1">
                <label className="text-[9px] text-slate-600 font-mono uppercase tracking-widest block">Affiliation / Rank</label>
-               <p className="text-lg font-bold text-slate-300">TaehOn, Strategic Planning Team</p>
+               <p className="text-lg font-bold text-slate-300">TaehOn,</p> Strategic Planning Team</p>
                <p className="text-xs font-mono text-slate-500 uppercase tracking-widest">Deputy Manager</p>
              </div>
           </div>
