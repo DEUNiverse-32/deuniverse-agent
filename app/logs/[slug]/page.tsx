@@ -48,7 +48,7 @@ export default function Home() {
       setTypedText(WARNING_MESSAGE.slice(0, index + 1));
       index++;
       if (index === WARNING_MESSAGE.length) clearInterval(intervalId);
-    }, 30);
+    }, 50);
     return () => clearInterval(intervalId);
   }, [isAuthorized]);
 
