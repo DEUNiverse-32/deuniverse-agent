@@ -40,7 +40,7 @@ export default function Dossier() {
 
           <div className="flex-1 w-full pt-4">
             <h2 className="text-[11px] tracking-[0.6em] text-red-700 font-bold mb-4 uppercase opacity-80">
-              // Subject Identification
+              Subject Identification
             </h2>
             <h3 className="text-4xl md:text-6xl font-extrabold tracking-tighter uppercase text-slate-100 mb-10">
               {userInfo.name}
@@ -84,7 +84,7 @@ export default function Dossier() {
             ))}
           </div>
           <span className="text-[10px] text-slate-500 tracking-[0.6em] uppercase font-bold">
-            SECURE_NODE_IDENT // 032-HADEUN
+            SECURE_NODE_IDENT ｜ 032-HADEUN
           </span>
         </div>
       </div>
