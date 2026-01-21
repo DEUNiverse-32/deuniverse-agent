@@ -1,7 +1,7 @@
-// lib/posts/russian roulette.ts
+// lib/posts/russianroulette.ts
 
-export const russian roulette = {
-    slug: 'russian roulette', // 주소는 일반 영문 소문자로 하는 게 안전해
+export const russianRoulette = {
+    slug: 'russianRoulette', // 주소는 일반 영문 소문자로 하는 게 안전해
     title: 'Russian Roulette (Incident Log #032)',
     date: '2026-01-21',
     content: `
