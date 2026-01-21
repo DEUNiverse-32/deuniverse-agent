@@ -34,7 +34,7 @@ const TypewriterText: React.FC<{ text: string, delay?: number }> = ({ text, dela
 };
 
 const Dossier: React.FC = () => {
-  const intro = "해당 페이지는 최상위 등급 보안 문서입니다. 모든 기록은 실시간으로 암호화되어 관리되며, 승인되지 않은 접근은 즉시 추적 및 격리됩니다.";
+  const intro = "모든 기록 실시간 암호화 관리 중";
 
   return (
     <div className="relative border border-slate-900 bg-black/40 backdrop-blur-xl p-8 md:p-12 shadow-2xl overflow-hidden">
@@ -52,7 +52,7 @@ const Dossier: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             className="bg-red-900 text-white text-[11px] font-bold px-4 py-2 tracking-[0.2em] border border-red-700 shadow-[0_0_15px_rgba(127,29,29,0.5)]"
           >
-            SECURITY LEVEL: 1 / TOP SECRET
+            SECURITY LEVEL: 5 / TOP SECRET
           </motion.div>
         </div>
         <div className="text-right font-mono text-[10px] text-slate-500">
