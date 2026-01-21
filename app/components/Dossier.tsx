@@ -7,7 +7,7 @@ export default function Dossier() {
 
   const userInfo = {
     name: "Lee Hae-Deun",
-    position: "Strategy Team Deputy Head",
+    position: "Strategy Team ｜ Deputy Head",
     clearance: "Level 5 (Top Secret)",
     status: "Active",
     affiliation: "TaehOn", 
