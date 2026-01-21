@@ -155,5 +155,4 @@ export const russianRoulette = {
 ​
 탕.
     `
-  }
-];
+  };
