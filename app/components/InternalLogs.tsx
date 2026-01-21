@@ -1,3 +1,11 @@
+// app/components/InternalLogs.tsx
+
+const InternalLogs: React.FC = () => {
+  const allPosts = getAllPosts();
+
+  console.log("보관소에서 가져온 기록들:", allPosts);
+
+  return (
 "use client";
 
 import React from 'react';
@@ -66,3 +74,5 @@ const InternalLogs: React.FC = () => {
 };
 
 export default InternalLogs;
+  );
+};
