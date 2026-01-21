@@ -51,9 +51,6 @@ export default function Dossier() {
                 }`}
               />
               <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] pointer-events-none opacity-20"></div>
-              {/* 왼쪽 상단 라벨 (내용이 비어있어서 ID_PHOTO 다시 추가) */}
-              <div className="absolute top-0 left-0 bg-red-900/80 px-2 py-1 pointer-events-none">
-                <p className="text-[7px] text-white tracking-[0.2em] font-bold">ID_PHOTO</p>
               </div>
             </div>
           </div>
