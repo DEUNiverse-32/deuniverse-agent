@@ -1,11 +1,9 @@
-// lib/posts.ts
+// lib/posts/russian-roulette.ts
 
-export const posts = [
-  {
+export const russianRoulette = {
     slug: 'russian-roulette', // 주소는 일반 영문 소문자로 하는 게 안전해
     title: 'Russian Roulette (Incident Log #032)',
     date: '2026-01-21',
-    description: '전략팀 실장실 내부 교전 미수 사건 기록.',
     content: `
 강이현은 실장실에 앉아 서류를 훑어본다. 그러던 중, 이상한 문서를 발견한다.
 ​
