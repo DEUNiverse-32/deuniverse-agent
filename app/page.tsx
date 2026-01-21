@@ -15,7 +15,7 @@ export default function Home() {
   const [isGlitching, setIsGlitching] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
 
-  // KST 시간 업데이트 함수
+  // KST 시간 업데이트 (상단 LIVE 표시용)
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -50,7 +50,7 @@ export default function Home() {
       setTypedText((prev) => WARNING_MESSAGE.slice(0, index + 1));
       index++;
       if (index === WARNING_MESSAGE.length) clearInterval(intervalId);
-    }, 30);
+    }, 50);
     return () => clearInterval(intervalId);
   }, [isAuthorized]);
 
@@ -62,10 +62,10 @@ export default function Home() {
         )}
         
         <div className={`max-w-2xl w-full border border-red-900/30 p-10 bg-[#0a0a1a] shadow-[0_0_60px_rgba(153,27,27,0.15)] relative overflow-hidden ${isGlitching ? 'scale-105 duration-75' : 'duration-500'}`}>
-          {/* 상단 KST 시계 레이어 */}
+          {/* 우측 상단 KST 시계 유지 */}
           <div className="absolute top-4 right-6 flex items-center space-x-2">
             <span className="text-[9px] text-red-900/60 tracking-widest animate-pulse">● LIVE</span>
-            <span className="text-[10px] text-slate-500 tracking-tighter">KST {currentTime}</span>
+            <span className="text-[10px] text-slate-500 tracking-tighter">{currentTime}</span>
           </div>
 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-900/5 to-transparent pointer-events-none h-4 w-full animate-pulse"></div>
@@ -106,9 +106,7 @@ export default function Home() {
           }
         `}</style>
 
-        <div className="mt-10 text-[8px] text-slate-800 tracking-[0.6em] uppercase">
-          DEUNIVERSE ENCRYPTION SYSTEM // SECURE_NODE_032 // {currentTime} KST
-        </div>
+        {/* 하단 텍스트 영역 제거됨 */}
       </div>
     );
   }
